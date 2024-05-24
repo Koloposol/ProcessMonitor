@@ -91,9 +91,19 @@ namespace ProcessMonitor
 
             try
             {
-                Process.Start(path);
+                Process process = Process.Start(new ProcessStartInfo
+                {
+                    Arguments = $"/C \"{path}\"",
+                    FileName = "cmd",
+                    WindowStyle = ProcessWindowStyle.Hidden
+                });
             }
             catch (Exception) { }
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
