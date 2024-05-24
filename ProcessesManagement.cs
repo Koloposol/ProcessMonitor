@@ -22,59 +22,75 @@ namespace ProcessMonitor
 
         public void RefreshProcessesList(ListView processesListView)
         {
-            processesListView.Items.Clear();
-
-            double memorySize;
-            double cpuProc;
-
-            foreach (Process process in processes)
+            try
             {
-                memorySize = 0;
-                cpuProc = 0;
+                processesListView.Items.Clear();
 
-                PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
-                PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
+                double memorySize;
+                double cpuProc;
 
-                memorySize = (double)memCounter.NextValue() / (1000 * 1000);
-                for (int i = 0; i < 10; i++) 
-                    cpuProc = (double)cpuCounter.NextValue();   
+                foreach (Process process in processes)
+                {
+                    memorySize = 0;
+                    cpuProc = 0;
 
-                string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
-                processesListView.Items.Add(new ListViewItem(row));
+                    PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
+                    PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
 
-                memCounter.Close();
-                memCounter.Dispose();
-                cpuCounter.Close();
-                cpuCounter.Dispose();
+                    memorySize = (double)memCounter.NextValue() / (1000 * 1000);
+                    for (int i = 0; i < 3; i++) 
+                        cpuProc = (double)cpuCounter.NextValue();   
+
+                    string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
+                    processesListView.Items.Add(new ListViewItem(row));
+
+                    memCounter.Close();
+                    memCounter.Dispose();
+                    cpuCounter.Close();
+                    cpuCounter.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                Form1 main = new Form1();
+                main.Show();
             }
         }
 
         public void RefreshProcessesList(ListView processesListView, string keyword)
         {
-            processesListView.Items.Clear();
-
-            double memorySize;
-            double cpuProc;
-
-            foreach (Process process in processes)
+            try
             {
-                memorySize = 0;
-                cpuProc = 0;
+                processesListView.Items.Clear();
 
-                PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
-                PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
+                double memorySize;
+                double cpuProc;
 
-                memorySize = (double)memCounter.NextValue() / (1000 * 1000);
-                for (int i = 0; i < 10; i++)
-                    cpuProc = (double)cpuCounter.NextValue();
+                foreach (Process process in processes)
+                {
+                    memorySize = 0;
+                    cpuProc = 0;
 
-                string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
-                processesListView.Items.Add(new ListViewItem(row));
+                    PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
+                    PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
 
-                memCounter.Close();
-                memCounter.Dispose();
-                cpuCounter.Close();
-                cpuCounter.Dispose();
+                    memorySize = (double)memCounter.NextValue() / (1000 * 1000);
+                    for (int i = 0; i < 3; i++)
+                        cpuProc = (double)cpuCounter.NextValue();
+
+                    string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
+                    processesListView.Items.Add(new ListViewItem(row));
+
+                    memCounter.Close();
+                    memCounter.Dispose();
+                    cpuCounter.Close();
+                    cpuCounter.Dispose();
+                }
+            }
+            catch (Exception)
+            {
+                Form1 main = new Form1();
+                main.Show();
             }
         }
 
