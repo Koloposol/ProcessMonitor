@@ -6,6 +6,7 @@ using System.Management;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace ProcessMonitor
 {
@@ -24,24 +25,27 @@ namespace ProcessMonitor
             processesListView.Items.Clear();
 
             double memorySize;
+            double cpuProc;
 
             foreach (Process process in processes)
             {
-                //TODO: Выводить процент использования ЦП процессом 
                 memorySize = 0;
+                cpuProc = 0;
 
-                PerformanceCounter counter = new PerformanceCounter();
-                counter.CategoryName = "Process";
-                counter.CounterName = "Working Set - Private";
-                counter.InstanceName = process.ProcessName;
+                PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
+                PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
 
-                memorySize = (double)counter.NextValue() / (1000 * 1000);
+                memorySize = (double)memCounter.NextValue() / (1000 * 1000);
+                for (int i = 0; i < 10; i++) 
+                    cpuProc = (double)cpuCounter.NextValue();   
 
-                string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() };
+                string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
                 processesListView.Items.Add(new ListViewItem(row));
 
-                counter.Close();
-                counter.Dispose();
+                memCounter.Close();
+                memCounter.Dispose();
+                cpuCounter.Close();
+                cpuCounter.Dispose();
             }
         }
 
@@ -50,24 +54,27 @@ namespace ProcessMonitor
             processesListView.Items.Clear();
 
             double memorySize;
+            double cpuProc;
 
             foreach (Process process in processes)
             {
-                //TODO: Выводить процент использования ЦП процессом 
                 memorySize = 0;
+                cpuProc = 0;
 
-                PerformanceCounter counter = new PerformanceCounter();
-                counter.CategoryName = "Process";
-                counter.CounterName = "Working Set - Private";
-                counter.InstanceName = process.ProcessName;
+                PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
+                PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
 
-                memorySize = (double)counter.NextValue() / (1000 * 1000);
+                memorySize = (double)memCounter.NextValue() / (1000 * 1000);
+                for (int i = 0; i < 10; i++)
+                    cpuProc = (double)cpuCounter.NextValue();
 
-                string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() };
+                string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
                 processesListView.Items.Add(new ListViewItem(row));
 
-                counter.Close();
-                counter.Dispose();
+                memCounter.Close();
+                memCounter.Dispose();
+                cpuCounter.Close();
+                cpuCounter.Dispose();
             }
         }
 

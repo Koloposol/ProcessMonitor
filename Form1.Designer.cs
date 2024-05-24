@@ -48,6 +48,7 @@
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.columnCPU = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -62,7 +63,7 @@
             this.файлToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(484, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(605, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -97,7 +98,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 24);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(484, 437);
+            this.tabControl1.Size = new System.Drawing.Size(605, 437);
             this.tabControl1.TabIndex = 1;
             // 
             // tabPage1
@@ -108,7 +109,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(476, 411);
+            this.tabPage1.Size = new System.Drawing.Size(597, 411);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Процессы";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -120,7 +121,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(3, 373);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(470, 35);
+            this.panel1.Size = new System.Drawing.Size(591, 35);
             this.panel1.TabIndex = 2;
             // 
             // button_refreshList
@@ -139,7 +140,7 @@
             // 
             this.button_closeProcess.Cursor = System.Windows.Forms.Cursors.Hand;
             this.button_closeProcess.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button_closeProcess.Location = new System.Drawing.Point(354, 3);
+            this.button_closeProcess.Location = new System.Drawing.Point(473, 3);
             this.button_closeProcess.Name = "button_closeProcess";
             this.button_closeProcess.Size = new System.Drawing.Size(113, 29);
             this.button_closeProcess.TabIndex = 0;
@@ -151,7 +152,8 @@
             // 
             this.listViewProcesses.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnName,
-            this.columnMemory});
+            this.columnMemory,
+            this.columnCPU});
             this.listViewProcesses.ContextMenuStrip = this.contextMenuStrip1;
             this.listViewProcesses.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewProcesses.FullRowSelect = true;
@@ -160,7 +162,7 @@
             this.listViewProcesses.Location = new System.Drawing.Point(3, 28);
             this.listViewProcesses.MultiSelect = false;
             this.listViewProcesses.Name = "listViewProcesses";
-            this.listViewProcesses.Size = new System.Drawing.Size(470, 380);
+            this.listViewProcesses.Size = new System.Drawing.Size(591, 380);
             this.listViewProcesses.TabIndex = 1;
             this.listViewProcesses.UseCompatibleStateImageBehavior = false;
             this.listViewProcesses.View = System.Windows.Forms.View.Details;
@@ -204,7 +206,7 @@
             this.toolStripTextBox1});
             this.toolStrip1.Location = new System.Drawing.Point(3, 3);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(470, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(591, 25);
             this.toolStrip1.TabIndex = 0;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -230,11 +232,16 @@
             this.tabPage2.Text = "tabPage2";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // columnCPU
+            // 
+            this.columnCPU.Text = "ЦП";
+            this.columnCPU.Width = 200;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(484, 461);
+            this.ClientSize = new System.Drawing.Size(605, 461);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -279,6 +286,7 @@
         private System.Windows.Forms.ToolStripMenuItem снятьЗадачуToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem завершитьДеревоПроцессовToolStripMenuItem;
         private System.Windows.Forms.Button button_refreshList;
+        private System.Windows.Forms.ColumnHeader columnCPU;
     }
 }
 

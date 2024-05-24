@@ -87,7 +87,7 @@ namespace ProcessMonitor
 
         private void запуститьНовыйПроцессToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            string path = Interaction.InputBox("Введите имя программы,папки,документа или Интернет-ресурса: ", "Запуск нового процесса");
+            string path = Interaction.InputBox("Введите имя программы: ", "Запуск нового процесса");
 
             try
             {
