@@ -10,7 +10,7 @@ using System.Threading;
 
 namespace ProcessMonitor
 {
-    internal class ProcessesManagement
+    public class ProcessesManagement
     {
         public List<Process> processes = new List<Process>();
 
