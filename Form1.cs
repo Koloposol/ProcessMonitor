@@ -100,10 +100,15 @@ namespace ProcessMonitor
             }
             catch (Exception) { }
         }
+        private void toolStripButtonSearch_Click(object sender, EventArgs e)
+        {
+            processManager.RefreshProcessesList(listViewProcesses, toolStripTextBox1.Text);
+        }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
     }
 }

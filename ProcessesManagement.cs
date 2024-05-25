@@ -61,30 +61,38 @@ namespace ProcessMonitor
         {
             try
             {
+                GetProcesses();
+
+                List<Process> filtred = processes.Where((x) =>
+                x.ProcessName.ToLower().Contains(keyword.ToLower())).ToList<Process>();
+
                 processesListView.Items.Clear();
 
                 double memorySize;
                 double cpuProc;
 
-                foreach (Process process in processes)
+                foreach (Process process in filtred)
                 {
-                    memorySize = 0;
-                    cpuProc = 0;
+                    if (process != null)
+                    {
+                        memorySize = 0;
+                        cpuProc = 0;
 
-                    PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
-                    PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
+                        PerformanceCounter memCounter = new PerformanceCounter("Process", "Working Set - Private", process.ProcessName);
+                        PerformanceCounter cpuCounter = new PerformanceCounter("Process", "% Processor Time", process.ProcessName);
 
-                    memorySize = (double)memCounter.NextValue() / (1000 * 1000);
-                    for (int i = 0; i < 3; i++)
-                        cpuProc = (double)cpuCounter.NextValue();
+                        memorySize = (double)memCounter.NextValue() / (1000 * 1000);
+                        for (int i = 0; i < 3; i++)
+                            cpuProc = (double)cpuCounter.NextValue();
 
-                    string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
-                    processesListView.Items.Add(new ListViewItem(row));
+                        string[] row = new string[] { process.ProcessName, Math.Round(memorySize, 1).ToString() + " Мб", Math.Round(cpuProc / 10, 1).ToString() + " %" };
+                        processesListView.Items.Add(new ListViewItem(row));
 
-                    memCounter.Close();
-                    memCounter.Dispose();
-                    cpuCounter.Close();
-                    cpuCounter.Dispose();
+                        memCounter.Close();
+                        memCounter.Dispose();
+                        cpuCounter.Close();
+                        cpuCounter.Dispose();
+                    }
                 }
             }
             catch (Exception)
