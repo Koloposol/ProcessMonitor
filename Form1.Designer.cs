@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.запуститьНовыйПроцессToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -51,12 +55,32 @@
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.toolStripButtonSearch = new System.Windows.Forms.ToolStripButton();
+            this.performanceRAM = new System.Diagnostics.PerformanceCounter();
+            this.performanceCounter2 = new System.Diagnostics.PerformanceCounter();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.progressBarCPU = new System.Windows.Forms.ProgressBar();
+            this.progressBarRAM = new System.Windows.Forms.ProgressBar();
+            this.chart1 = new System.Windows.Forms.DataVisualization.Charting.Chart();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.labelUse = new System.Windows.Forms.Label();
+            this.labelFree = new System.Windows.Forms.Label();
+            this.labelInstalled = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceRAM)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -113,7 +137,7 @@
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(597, 411);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "Процессы";
+            this.tabPage1.Text = "Управление процессами";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // panel1
@@ -233,12 +257,25 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.labelInstalled);
+            this.tabPage2.Controls.Add(this.labelFree);
+            this.tabPage2.Controls.Add(this.labelUse);
+            this.tabPage2.Controls.Add(this.label7);
+            this.tabPage2.Controls.Add(this.label5);
+            this.tabPage2.Controls.Add(this.label6);
+            this.tabPage2.Controls.Add(this.label3);
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.label2);
+            this.tabPage2.Controls.Add(this.label1);
+            this.tabPage2.Controls.Add(this.chart1);
+            this.tabPage2.Controls.Add(this.progressBarRAM);
+            this.tabPage2.Controls.Add(this.progressBarCPU);
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(597, 411);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.Text = "Системный монитор";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
             // toolStripButtonSearch
@@ -251,6 +288,146 @@
             this.toolStripButtonSearch.Text = "toolStripButton1";
             this.toolStripButtonSearch.ToolTipText = "Поиск";
             this.toolStripButtonSearch.Click += new System.EventHandler(this.toolStripButtonSearch_Click);
+            // 
+            // performanceRAM
+            // 
+            this.performanceRAM.CategoryName = "Processor";
+            this.performanceRAM.CounterName = "% Processor Time";
+            this.performanceRAM.InstanceName = "_Total";
+            // 
+            // performanceCounter2
+            // 
+            this.performanceCounter2.CategoryName = "Memory";
+            this.performanceCounter2.CounterName = "% Committed Bytes In Use";
+            // 
+            // progressBarCPU
+            // 
+            this.progressBarCPU.Location = new System.Drawing.Point(44, 316);
+            this.progressBarCPU.Name = "progressBarCPU";
+            this.progressBarCPU.Size = new System.Drawing.Size(510, 23);
+            this.progressBarCPU.TabIndex = 0;
+            // 
+            // progressBarRAM
+            // 
+            this.progressBarRAM.Location = new System.Drawing.Point(44, 345);
+            this.progressBarRAM.Name = "progressBarRAM";
+            this.progressBarRAM.Size = new System.Drawing.Size(510, 23);
+            this.progressBarRAM.TabIndex = 1;
+            // 
+            // chart1
+            // 
+            chartArea1.Name = "ChartArea1";
+            this.chart1.ChartAreas.Add(chartArea1);
+            this.chart1.Dock = System.Windows.Forms.DockStyle.Top;
+            legend1.Name = "Legend1";
+            this.chart1.Legends.Add(legend1);
+            this.chart1.Location = new System.Drawing.Point(3, 3);
+            this.chart1.Name = "chart1";
+            series1.BorderWidth = 2;
+            series1.ChartArea = "ChartArea1";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Legend = "Legend1";
+            series1.Name = "ЦП";
+            series2.BorderWidth = 2;
+            series2.ChartArea = "ChartArea1";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Legend = "Legend1";
+            series2.Name = "ОЗУ";
+            this.chart1.Series.Add(series1);
+            this.chart1.Series.Add(series2);
+            this.chart1.Size = new System.Drawing.Size(591, 292);
+            this.chart1.TabIndex = 2;
+            this.chart1.Text = "chart1";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 316);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(23, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "ЦП";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(8, 345);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(30, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "ОЗУ";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(560, 345);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(15, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "%";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(560, 316);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(15, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "%";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(252, 379);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(59, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Доступно:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(41, 379);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(82, 13);
+            this.label6.TabIndex = 7;
+            this.label6.Text = "Используется:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(446, 379);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(77, 13);
+            this.label7.TabIndex = 9;
+            this.label7.Text = "Установлено:";
+            // 
+            // labelUse
+            // 
+            this.labelUse.AutoSize = true;
+            this.labelUse.Location = new System.Drawing.Point(129, 379);
+            this.labelUse.Name = "labelUse";
+            this.labelUse.Size = new System.Drawing.Size(25, 13);
+            this.labelUse.TabIndex = 10;
+            this.labelUse.Text = "000";
+            // 
+            // labelFree
+            // 
+            this.labelFree.AutoSize = true;
+            this.labelFree.Location = new System.Drawing.Point(317, 379);
+            this.labelFree.Name = "labelFree";
+            this.labelFree.Size = new System.Drawing.Size(25, 13);
+            this.labelFree.TabIndex = 11;
+            this.labelFree.Text = "000";
+            // 
+            // labelInstalled
+            // 
+            this.labelInstalled.AutoSize = true;
+            this.labelInstalled.Location = new System.Drawing.Point(529, 379);
+            this.labelInstalled.Name = "labelInstalled";
+            this.labelInstalled.Size = new System.Drawing.Size(25, 13);
+            this.labelInstalled.TabIndex = 12;
+            this.labelInstalled.Text = "000";
             // 
             // Form1
             // 
@@ -275,6 +452,11 @@
             this.contextMenuStrip1.ResumeLayout(false);
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceRAM)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.performanceCounter2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chart1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -303,6 +485,22 @@
         private System.Windows.Forms.Button button_refreshList;
         private System.Windows.Forms.ColumnHeader columnCPU;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
+        private System.Diagnostics.PerformanceCounter performanceRAM;
+        private System.Diagnostics.PerformanceCounter performanceCounter2;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chart1;
+        private System.Windows.Forms.ProgressBar progressBarRAM;
+        private System.Windows.Forms.ProgressBar progressBarCPU;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Label labelInstalled;
+        private System.Windows.Forms.Label labelFree;
+        private System.Windows.Forms.Label labelUse;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label1;
     }
 }
 
