@@ -168,6 +168,7 @@
             this.listViewProcesses.TabIndex = 1;
             this.listViewProcesses.UseCompatibleStateImageBehavior = false;
             this.listViewProcesses.View = System.Windows.Forms.View.Details;
+            this.listViewProcesses.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.listViewProcesses_ColumnClick);
             // 
             // columnName
             // 

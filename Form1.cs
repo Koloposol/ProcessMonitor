@@ -16,6 +16,7 @@ namespace ProcessMonitor
     public partial class Form1 : Form
     {
         ProcessesManagement processManager = new ProcessesManagement();
+        ListViewItemComparer comparer = new ListViewItemComparer();
 
         public Form1()
         {
@@ -26,6 +27,7 @@ namespace ProcessMonitor
         {
             processManager.GetProcesses();
             processManager.RefreshProcessesList(listViewProcesses);
+            comparer.ColumnIndex = 0;
         }
 
         private void button_refreshList_Click(object sender, EventArgs e)
@@ -103,6 +105,14 @@ namespace ProcessMonitor
         private void toolStripButtonSearch_Click(object sender, EventArgs e)
         {
             processManager.RefreshProcessesList(listViewProcesses, toolStripTextBox1.Text);
+        }
+
+        private void listViewProcesses_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            comparer.ColumnIndex = e.Column;
+            comparer.SortDirection = comparer.SortDirection == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+            listViewProcesses.ListViewItemSorter = comparer;
+            listViewProcesses.Sort();
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)
