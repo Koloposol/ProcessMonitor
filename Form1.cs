@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Management;
 using Microsoft.VisualBasic;
+using ProcessMonitor.Properties;
 
 namespace ProcessMonitor
 {
@@ -28,6 +29,8 @@ namespace ProcessMonitor
             processManager.GetProcesses();
             processManager.RefreshProcessesList(listViewProcesses);
             comparer.ColumnIndex = 0;
+            Icon = Resources.mainIcon;
+            toolStripButtonSearch.Image = Resources.searchPNG;
         }
 
         private void button_refreshList_Click(object sender, EventArgs e)
