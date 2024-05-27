@@ -3,7 +3,7 @@
 "VSVersion" = "3:800"
 "ProjectType" = "8:{978C614F-708E-4E1A-B201-565925725DBA}"
 "IsWebType" = "8:FALSE"
-"ProjectName" = "8:ProcessMonitorSetup"
+"ProjectName" = "8:ProcessMonitor_Install_Deinstall"
 "LanguageId" = "3:1049"
 "CodePage" = "3:1251"
 "UILanguageId" = "3:1049"
@@ -34,13 +34,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B49148E8FDF203E598533ED3A518ACE2"
+        "OwnerKey" = "8:_C4CB7213C69F455CA9C71A9B0489C035"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_C4CB7213C69F455CA9C71A9B0489C035"
+        "OwnerKey" = "8:_B49148E8FDF203E598533ED3A518ACE2"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -61,6 +61,22 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.7.2"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.7.2 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.7.2"
+                    }
+                }
+            }
         }
         "Release"
         {
@@ -77,6 +93,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -225,7 +249,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Process Monitor"
         "ProductCode" = "8:{069117C2-F337-4C2D-A34A-91CB8C7E5D39}"
-        "PackageCode" = "8:{94216125-1D31-4AB4-A744-A0756B106581}"
+        "PackageCode" = "8:{5253E164-F224-4C5E-9E22-5FB60CD79DC0}"
         "UpgradeCode" = "8:{CABCF02E-60A5-4ED6-9943-A0F517936385}"
         "AspNetVersion" = "8:2.0.50727.0"
         "RestartWWWService" = "11:FALSE"
@@ -236,7 +260,7 @@
         "Manufacturer" = "8:NGTK College"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
-        "Title" = "8:ProcessMonitorSetup"
+        "Title" = "8:Process Monitor"
         "Subject" = "8:"
         "ARPCONTACT" = "8:LomakinEA38"
         "Keywords" = "8:"

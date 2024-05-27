@@ -131,12 +131,6 @@ namespace ProcessMonitor
             listViewProcesses.ListViewItemSorter = comparer;
             listViewProcesses.Sort();
         }
-
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         private void timer1_Tick(object sender, EventArgs e)
         {
             cpu = performanceCPU.NextValue();
@@ -154,5 +148,17 @@ namespace ProcessMonitor
             chart1.Series["ЦП"].Points.AddY(cpu);
             chart1.Series["ОЗУ"].Points.AddY(ram);
         }
+
+        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
+
+        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
     }
 }
