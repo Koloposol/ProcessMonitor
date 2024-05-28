@@ -10,12 +10,23 @@ using System.Windows.Forms;
 using System.Diagnostics;
 using System.Management;
 using Microsoft.VisualBasic;
+using ProcessMonitor.Properties;
+using System.Runtime.InteropServices;
 
 namespace ProcessMonitor
 {
     public partial class Form1 : Form
     {
         ProcessesManagement processManager = new ProcessesManagement();
+        ListViewItemComparer comparer = new ListViewItemComparer();
+        MEMORYSTATUSEX mEMORYSTATUSEX = new MEMORYSTATUSEX();
+        private float cpu;
+        private float ram;
+        private ulong installedMemory;
+
+        [return: MarshalAs(UnmanagedType.Bool)]
+        [DllImport("kernel32.dll", CharSet = CharSet.Auto, SetLastError = true)]
+        static extern bool GlobalMemoryStatusEx([In, Out] MEMORYSTATUSEX lpBuffer);
 
         public Form1()
         {
@@ -26,6 +37,14 @@ namespace ProcessMonitor
         {
             processManager.GetProcesses();
             processManager.RefreshProcessesList(listViewProcesses);
+            comparer.ColumnIndex = 0;
+
+            if (GlobalMemoryStatusEx(mEMORYSTATUSEX))
+                installedMemory = mEMORYSTATUSEX.ullTotalPhys;
+
+            labelInstalledRAM.Text = (installedMemory / 1000000000).ToString() + " Гб";
+
+            timer1.Start();
         }
 
         private void button_refreshList_Click(object sender, EventArgs e)
@@ -51,7 +70,7 @@ namespace ProcessMonitor
             catch (Exception) { }
         }
 
-        private void завершитьДеревоПроцессовToolStripMenuItem_Click(object sender, EventArgs e)
+        private void processTreeClose_button_Click(object sender, EventArgs e)
         {
             try
             {
@@ -68,7 +87,7 @@ namespace ProcessMonitor
             catch (Exception) { }
         }
 
-        private void снятьЗадачуToolStripMenuItem_Click(object sender, EventArgs e)
+        private void processClose_button_Click(object sender, EventArgs e)
         {
             try
             {
@@ -85,7 +104,7 @@ namespace ProcessMonitor
             catch (Exception) { }
         }
 
-        private void запуститьНовыйПроцессToolStripMenuItem_Click(object sender, EventArgs e)
+        private void startNewProcess_button_Click(object sender, EventArgs e)
         {
             string path = Interaction.InputBox("Введите имя программы: ", "Запуск нового процесса");
 
@@ -100,8 +119,43 @@ namespace ProcessMonitor
             }
             catch (Exception) { }
         }
+        private void toolStripButtonSearch_Click(object sender, EventArgs e)
+        {
+            processManager.RefreshProcessesList(listViewProcesses, toolStripTextBox1.Text);
+        }
 
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        private void listViewProcesses_ColumnClick(object sender, ColumnClickEventArgs e)
+        {
+            comparer.ColumnIndex = e.Column;
+            comparer.SortDirection = comparer.SortDirection == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+            listViewProcesses.ListViewItemSorter = comparer;
+            listViewProcesses.Sort();
+        }
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            cpu = performanceCPU.NextValue();
+            ram = performanceRAM.NextValue();
+
+            progressBarCPU.Value = (int)cpu;
+            progressBarRAM.Value = (int)ram;
+
+            labelCPU.Text = Math.Round(cpu, 1).ToString() + " %";
+            labelRAM.Text = Math.Round(ram, 1).ToString() + " %";
+
+            labelUseRAM.Text = Math.Round(ram / 100 * installedMemory / 1000000000, 1).ToString() + " Гб";
+            labelFreeRAM.Text = Math.Round((installedMemory - ram / 100 * installedMemory) / 1000000000, 1).ToString() + " Гб";
+
+            chart1.Series["ЦП"].Points.AddY(cpu);
+            chart1.Series["ОЗУ"].Points.AddY(ram);
+        }
+
+        private void about_button_Click(object sender, EventArgs e)
+        {
+            About about = new About();
+            about.ShowDialog();
+        }
+
+        private void exit_button_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
