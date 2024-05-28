@@ -70,7 +70,7 @@ namespace ProcessMonitor
             catch (Exception) { }
         }
 
-        private void завершитьДеревоПроцессовToolStripMenuItem_Click(object sender, EventArgs e)
+        private void processTreeClose_button_Click(object sender, EventArgs e)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace ProcessMonitor
             catch (Exception) { }
         }
 
-        private void снятьЗадачуToolStripMenuItem_Click(object sender, EventArgs e)
+        private void processClose_button_Click(object sender, EventArgs e)
         {
             try
             {
@@ -104,7 +104,7 @@ namespace ProcessMonitor
             catch (Exception) { }
         }
 
-        private void запуститьНовыйПроцессToolStripMenuItem_Click(object sender, EventArgs e)
+        private void startNewProcess_button_Click(object sender, EventArgs e)
         {
             string path = Interaction.InputBox("Введите имя программы: ", "Запуск нового процесса");
 
@@ -149,16 +149,15 @@ namespace ProcessMonitor
             chart1.Series["ОЗУ"].Points.AddY(ram);
         }
 
-        private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
+        private void about_button_Click(object sender, EventArgs e)
         {
             About about = new About();
             about.ShowDialog();
         }
 
-        private void выходToolStripMenuItem_Click(object sender, EventArgs e)
+        private void exit_button_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
-
     }
 }

@@ -36,9 +36,9 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.запуститьНовыйПроцессToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.выходToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.startNewProcess_button = new System.Windows.Forms.ToolStripMenuItem();
+            this.exit_button = new System.Windows.Forms.ToolStripMenuItem();
+            this.about_button = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -49,8 +49,8 @@
             this.columnMemory = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnCPU = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.снятьЗадачуToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.завершитьДеревоПроцессовToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.processClose_button = new System.Windows.Forms.ToolStripMenuItem();
+            this.processTreeClose_button = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
@@ -88,7 +88,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
-            this.оПрограммеToolStripMenuItem});
+            this.about_button});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(605, 24);
@@ -98,32 +98,32 @@
             // файлToolStripMenuItem
             // 
             this.файлToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.запуститьНовыйПроцессToolStripMenuItem,
-            this.выходToolStripMenuItem});
+            this.startNewProcess_button,
+            this.exit_button});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
             this.файлToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
-            // запуститьНовыйПроцессToolStripMenuItem
+            // startNewProcess_button
             // 
-            this.запуститьНовыйПроцессToolStripMenuItem.Name = "запуститьНовыйПроцессToolStripMenuItem";
-            this.запуститьНовыйПроцессToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.запуститьНовыйПроцессToolStripMenuItem.Text = "Запустить новый процесс";
-            this.запуститьНовыйПроцессToolStripMenuItem.Click += new System.EventHandler(this.запуститьНовыйПроцессToolStripMenuItem_Click);
+            this.startNewProcess_button.Name = "startNewProcess_button";
+            this.startNewProcess_button.Size = new System.Drawing.Size(217, 22);
+            this.startNewProcess_button.Text = "Запустить новый процесс";
+            this.startNewProcess_button.Click += new System.EventHandler(this.startNewProcess_button_Click);
             // 
-            // выходToolStripMenuItem
+            // exit_button
             // 
-            this.выходToolStripMenuItem.Name = "выходToolStripMenuItem";
-            this.выходToolStripMenuItem.Size = new System.Drawing.Size(217, 22);
-            this.выходToolStripMenuItem.Text = "Выход";
-            this.выходToolStripMenuItem.Click += new System.EventHandler(this.выходToolStripMenuItem_Click);
+            this.exit_button.Name = "exit_button";
+            this.exit_button.Size = new System.Drawing.Size(217, 22);
+            this.exit_button.Text = "Выход";
+            this.exit_button.Click += new System.EventHandler(this.exit_button_Click);
             // 
-            // оПрограммеToolStripMenuItem
+            // about_button
             // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.оПрограммеToolStripMenuItem_Click);
+            this.about_button.Name = "about_button";
+            this.about_button.Size = new System.Drawing.Size(94, 20);
+            this.about_button.Text = "О программе";
+            this.about_button.Click += new System.EventHandler(this.about_button_Click);
             // 
             // tabControl1
             // 
@@ -221,24 +221,24 @@
             // contextMenuStrip1
             // 
             this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.снятьЗадачуToolStripMenuItem,
-            this.завершитьДеревоПроцессовToolStripMenuItem});
+            this.processClose_button,
+            this.processTreeClose_button});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
             this.contextMenuStrip1.Size = new System.Drawing.Size(239, 48);
             // 
-            // снятьЗадачуToolStripMenuItem
+            // processClose_button
             // 
-            this.снятьЗадачуToolStripMenuItem.Name = "снятьЗадачуToolStripMenuItem";
-            this.снятьЗадачуToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.снятьЗадачуToolStripMenuItem.Text = "Снять задачу";
-            this.снятьЗадачуToolStripMenuItem.Click += new System.EventHandler(this.снятьЗадачуToolStripMenuItem_Click);
+            this.processClose_button.Name = "processClose_button";
+            this.processClose_button.Size = new System.Drawing.Size(238, 22);
+            this.processClose_button.Text = "Снять задачу";
+            this.processClose_button.Click += new System.EventHandler(this.processClose_button_Click);
             // 
-            // завершитьДеревоПроцессовToolStripMenuItem
+            // processTreeClose_button
             // 
-            this.завершитьДеревоПроцессовToolStripMenuItem.Name = "завершитьДеревоПроцессовToolStripMenuItem";
-            this.завершитьДеревоПроцессовToolStripMenuItem.Size = new System.Drawing.Size(238, 22);
-            this.завершитьДеревоПроцессовToolStripMenuItem.Text = "Завершить дерево процессов";
-            this.завершитьДеревоПроцессовToolStripMenuItem.Click += new System.EventHandler(this.завершитьДеревоПроцессовToolStripMenuItem_Click);
+            this.processTreeClose_button.Name = "processTreeClose_button";
+            this.processTreeClose_button.Size = new System.Drawing.Size(238, 22);
+            this.processTreeClose_button.Text = "Завершить дерево процессов";
+            this.processTreeClose_button.Click += new System.EventHandler(this.processTreeClose_button_Click);
             // 
             // toolStrip1
             // 
@@ -479,8 +479,8 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem файлToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem запуститьНовыйПроцессToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem выходToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem startNewProcess_button;
+        private System.Windows.Forms.ToolStripMenuItem exit_button;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
@@ -493,8 +493,8 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button button_closeProcess;
         private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem снятьЗадачуToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem завершитьДеревоПроцессовToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem processClose_button;
+        private System.Windows.Forms.ToolStripMenuItem processTreeClose_button;
         private System.Windows.Forms.Button button_refreshList;
         private System.Windows.Forms.ColumnHeader columnCPU;
         private System.Windows.Forms.ToolStripButton toolStripButtonSearch;
@@ -514,7 +514,7 @@
         private System.Windows.Forms.Label labelCPU;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem about_button;
     }
 }
 
